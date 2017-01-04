@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
+var async = require('async');
 var db = require('./models');
 var moment = require('moment');
 var app = express();
@@ -19,6 +20,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+
 // GET / - display all posts and their authors
 app.get('/', function(req, res) {
   db.post.findAll({
@@ -32,9 +34,12 @@ app.get('/', function(req, res) {
   });
 });
 
-// bring in authors and posts controllers
+
+// bring in authors and posts controllers ("app.use" is middleware)
 app.use('/authors', require('./controllers/authors'));
 app.use('/posts', require('./controllers/posts'));
+app.use('/comments', require('./controllers/comments'));
+app.use('/tags', require('./controllers/tags'));
 
 var server = app.listen(process.env.PORT || 3000);
 

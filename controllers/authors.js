@@ -2,6 +2,7 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+
 // GET /authors - display all authors
 router.get('/', function(req, res) {
   db.author.findAll()
@@ -12,6 +13,7 @@ router.get('/', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 // POST /authors - create a new author
 router.post('/', function(req, res) {
@@ -28,10 +30,12 @@ router.post('/', function(req, res) {
   });
 });
 
+
 // GET /authors/new - display form for creating a new author
 router.get('/new', function(req, res) {
   res.render('authors/new');
 });
+
 
 // GET /authors/:id - display a specific author and their posts
 router.get('/:id', function(req, res) {
@@ -47,5 +51,6 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
 
 module.exports = router;

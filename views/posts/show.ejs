@@ -4,8 +4,41 @@
   <strong><%= moment(post.createdAt).calendar() %></strong>
 </p>
 
+<p>
+	<strong>Tags: </strong>
+	<% post.tags.forEach(function(tag){ %>
+		#<%= tag.name %>,
+	<% }); %>
+</p>
+
 <p><%= post.content %></p>
 
+<hr />
+
+<h2>Comments</h2>
+
+<% post.comments.forEach(function(comment, index) { %>
+	<div class="well">
+		<p><%= comment.comment %></p>
+		<p><b><%= comment.name %></b><p>
+	</div>
+<% }); %>
+
+<h4>Add a new comment:</h4>
+
+<form class="form" method="post" action="/posts/<%= post.id %>/comments">
+	<div class="form-group">
+		<label for="body">Name:</label>
+		<input type="text" name="name" id="name" class="form-control" placeholder="Type your name here">
+	</div>
+	<div class="form-group">
+		<label for="body">Comment:</label>
+		<textarea cols="62" rows="4" class="form-control" name="comment" id="comment" cols="20" rows="3" class="form-control" placeholder="Type your comment here"></textarea>
+	</div>
+	<input type="submit" class="btn btn-default" value="Add Comment">
+</form>
+
+<br>
 <hr />
 
 <a href="/">&larr; Back Home</a>

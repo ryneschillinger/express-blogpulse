@@ -1,0 +1,12 @@
+<h2><%= tag.name %></h2>
+
+<hr>
+
+<% tag.posts.forEach(function(post) { %>
+	<div>
+		<a href="/posts/<%= post.id %>">
+			<%= post.title %>
+		</a>
+	</div>
+	<hr>
+<% }); %>
